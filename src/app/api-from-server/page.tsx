@@ -3,9 +3,11 @@ import { headers } from 'next/headers'
 type Props = {}
 
 const fetchName = async () => {
+  const defaultHeaders = headers();
+  const customHeaders = new Headers(defaultHeaders);
   const response = await fetch(`${process.env.NEXT_BACKEND_URL}/api/whoami`, {
     method: 'GET',
-    headers: headers(),
+    headers: customHeaders,
     cache: 'no-cache',
     next: {
       tags: ['api'],
